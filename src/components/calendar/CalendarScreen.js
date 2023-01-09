@@ -15,7 +15,7 @@ const events = [{
 
 export const CalendarScreen = () => {
     return (
-        <>
+        <div className='calendar-screen'>
             <Navbar />
             <Calendar 
             localizer={localizer}
@@ -23,7 +23,7 @@ export const CalendarScreen = () => {
             startAccessor="start"
             endAccessor="end"
             />
-        </>
+        </div>
 
     )
 }
