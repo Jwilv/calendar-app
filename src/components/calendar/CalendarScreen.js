@@ -32,7 +32,7 @@ export const CalendarScreen = () => {
     }
 
     const handleViewChange = (event)=>{
-        console.log(event);
+    localStorage.setItem('lastView', event)
     }
 
     const eventStylegetter = ( event, start, end, isSelect)=>{
