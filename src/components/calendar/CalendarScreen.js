@@ -27,6 +27,10 @@ export const CalendarScreen = () => {
     console.log(event);
     }
 
+    const handleSelectEvent = (event)=>{
+        console.log(event);
+    }
+
     const eventStylegetter = ( event, start, end, isSelect)=>{
         const style ={
             backgroundColor:'#367CF7',
@@ -52,6 +56,7 @@ export const CalendarScreen = () => {
             messages={messages}
             eventPropGetter={eventStylegetter}
             onDoubleClickEvent={handleDoubleClick}
+            onSelectEvent={handleSelectEvent}
             components={{
                 event:CalendarEvent
             }}
