@@ -14,7 +14,11 @@ const events = [{
     title:'funciona?',
     start : moment().toDate(),
     end : moment().add(2,'hours').toDate(),
-    bgcolor: '#fafafa'
+    bgcolor: '#fafafa',
+    user:{
+        id:'1234',
+        name:'juanceto'
+    }
 }]
 
 export const CalendarScreen = () => {
