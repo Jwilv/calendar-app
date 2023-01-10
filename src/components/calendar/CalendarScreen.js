@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'moment/locale/es'
@@ -23,6 +23,8 @@ const events = [{
 
 export const CalendarScreen = () => {
 
+    const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
+
     const handleDoubleClick = (event)=>{
     console.log(event);
     }
@@ -32,6 +34,7 @@ export const CalendarScreen = () => {
     }
 
     const handleViewChange = (event)=>{
+    setLastView(event)
     localStorage.setItem('lastView', event)
     }
 
@@ -62,6 +65,7 @@ export const CalendarScreen = () => {
             onDoubleClickEvent={handleDoubleClick}
             onSelectEvent={handleSelectEvent}
             onView={handleViewChange}
+            view={lastView}
             components={{
                 event:CalendarEvent
             }}
