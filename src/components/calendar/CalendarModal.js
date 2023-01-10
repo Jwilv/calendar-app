@@ -17,12 +17,15 @@ Modal.setAppElement('#root');
 export const CalendarModal = () => {
     return (
         <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
+            isOpen={true}
+            // onAfterOpen={afterOpenModal}
+            // onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Example Modal"
         >
+            <h1>como que 14 ? </h1>
+            <hr/>
+            <span>infanteria en marca de movimiento</span>
         </Modal>
     )
 }
