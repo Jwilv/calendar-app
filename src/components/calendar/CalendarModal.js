@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment'
+import { useForm } from '../../hooks/useForm';
 
 
 const customStyles = {
@@ -27,18 +28,33 @@ export const CalendarModal = () => {
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
 
+    const [values, handleInputChanGet] = useForm({
+        title:'',
+        info:'',
+        start:nowDateStart.toDate(),
+        end:nowDateEnd.toDate(),
+    });
+
+    const {title, info} = values;
+
     const closeModal = () => {
 
     }
 
     const handleStartDateChange = (event)=>{
         setDateStart(event);
-        console.log(event)
+        handleInputChanGet({
+            ...values,
+            start:nowDateStart.toDate(),
+        })
     }
 
     const handleEndDateChange = (event)=>{
         setDateEnd(event)
-        console.log(event)
+        handleInputChanGet({
+            ...values,
+        end:nowDateEnd.toDate(),
+        })
     }
 
     return (
@@ -83,6 +99,8 @@ export const CalendarModal = () => {
                         className="form-control"
                         placeholder="Título del evento"
                         name="title"
+                        value={title}
+                        onChange={handleInputChanGet}
                         autoComplete="off"
                     />
                     <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
@@ -95,6 +113,8 @@ export const CalendarModal = () => {
                         placeholder="Notas"
                         rows="5"
                         name="notes"
+                        value={info}
+                        onChange={handleInputChanGet}
                     ></textarea>
                     <small id="emailHelp" className="form-text text-muted">Información adicional</small>
                 </div>
