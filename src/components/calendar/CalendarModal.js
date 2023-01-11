@@ -28,7 +28,7 @@ export const CalendarModal = () => {
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
 
-    const [values, handleInputChanGet] = useForm({
+    const [values, handleInputChanGet,setValues] = useForm({
         title:'',
         notes:'',
         start:nowDateStart.toDate(),
@@ -43,17 +43,17 @@ export const CalendarModal = () => {
 
     const handleStartDateChange = (event)=>{
         setDateStart(event);
-        handleInputChanGet({
+        setValues({
             ...values,
-            start:nowDateStart.toDate(),
+            start:event,
         })
     }
 
     const handleEndDateChange = (event)=>{
         setDateEnd(event)
-        handleInputChanGet({
+        setValues({
             ...values,
-        end:nowDateEnd.toDate(),
+        end:event,
         })
     }
 
