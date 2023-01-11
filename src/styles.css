@@ -65,5 +65,5 @@ body,html{
     outline: none;
 }
 .react-datetime-picker__wrapper{
-border: 0 solid grey ;
+border: 0 solid grey !important;
 }
