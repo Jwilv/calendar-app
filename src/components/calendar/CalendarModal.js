@@ -30,12 +30,12 @@ export const CalendarModal = () => {
 
     const [values, handleInputChanGet] = useForm({
         title:'',
-        info:'',
+        notes:'',
         start:nowDateStart.toDate(),
         end:nowDateEnd.toDate(),
     });
 
-    const {title, info} = values;
+    const {title, notes} = values;
 
     const closeModal = () => {
 
@@ -113,10 +113,10 @@ export const CalendarModal = () => {
                         placeholder="Notas"
                         rows="5"
                         name="notes"
-                        value={info}
+                        value={notes}
                         onChange={handleInputChanGet}
                     ></textarea>
-                    <small id="emailHelp" className="form-text text-muted">Información adicional</small>
+                    <small id="emailHelp" className="form-text text-muted">notesrmación adicional</small>
                 </div>
 
                 <button
