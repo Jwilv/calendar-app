@@ -19,8 +19,6 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-
-
 const nowDateStart = moment().minutes(0).seconds(0).add(1, 'hours')
 const nowDateEnd = nowDateStart.clone().add(1, 'hours')
 
@@ -68,12 +66,12 @@ export const CalendarModal = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text:'La fecha de finalización debe ser mayor que la fecha de inicio',
+                text: 'La fecha de finalización debe ser mayor que la fecha de inicio',
             })
             return;
         }
 
-        if(title.trim().length < 2){
+        if (title.trim().length < 2) {
             setTitleValid(false)
             return;
         }
@@ -123,7 +121,7 @@ export const CalendarModal = () => {
                     <label>Titulo y notas</label>
                     <input
                         type="text"
-                        className={`form-control ${ !titleValid && "is-invalid"}`}
+                        className={`form-control ${!titleValid && "is-invalid"}`}
                         placeholder="Título del evento"
                         name="title"
                         value={title}
