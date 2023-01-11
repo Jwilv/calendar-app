@@ -28,6 +28,7 @@ export const CalendarModal = () => {
 
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
+    const [titleValid, setTitleValid] = useState(true)
 
     const [values, handleInputChanGet, setValues] = useForm({
         title: '',
@@ -71,6 +72,13 @@ export const CalendarModal = () => {
             })
             return;
         }
+
+        if(title.trim().length < 2){
+            setTitleValid(false)
+            return;
+        }
+        setTitleValid(true)
+        closeModal();
     }
 
     return (
@@ -115,7 +123,7 @@ export const CalendarModal = () => {
                     <label>Titulo y notas</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${ !titleValid && "is-invalid"}`}
                         placeholder="Título del evento"
                         name="title"
                         value={title}
