@@ -1,5 +1,9 @@
 import React from 'react'
+
 import Modal from 'react-modal';
+import DateTimePicker from 'react-datetime-picker';
+import moment from 'moment'
+
 
 const customStyles = {
     content: {
@@ -15,10 +19,16 @@ Modal.setAppElement('#root');
 
 
 
+const startDate = moment().minutes(0).seconds(0).add(1,'hours')
+
 export const CalendarModal = () => {
 
     const closeModal = () => {
 
+    }
+
+    const handleStartDateChange = (event)=>{
+    console.log(event);
     }
 
     return (
@@ -38,7 +48,11 @@ export const CalendarModal = () => {
 
                 <div className="form-group mb-2">
                     <label>Fecha y hora inicio</label>
-                    <input className="form-control" placeholder="Fecha inicio" />
+                    <DateTimePicker 
+                    onChange={handleStartDateChange} 
+                    value={startDate.toDate()} 
+                    className={'form-control'}
+                    />
                 </div>
 
                 <div className="form-group mb-2">

@@ -59,3 +59,11 @@ body,html{
     outline: none;
     padding: 10px;
 }
+
+/* date piker */
+.react-datetime-picker input:focus {
+    outline: none;
+}
+.react-datetime-picker__wrapper{
+border: 0 solid grey ;
+}
