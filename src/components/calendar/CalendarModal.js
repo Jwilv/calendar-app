@@ -35,7 +35,7 @@ export const CalendarModal = () => {
         end:nowDateEnd.toDate(),
     });
 
-    const {title, notes} = values;
+    const {title, notes,start,end} = values;
 
     const closeModal = () => {
 
@@ -57,6 +57,17 @@ export const CalendarModal = () => {
         })
     }
 
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        const momentStart = moment(start);
+        const momentEnd = moment(end);
+
+        if(momentStart.isSameOrAfter(momentEnd)){
+            console.log('no se puede')
+            return;
+        }
+    }
+
     return (
         <Modal
             isOpen={true}
@@ -70,7 +81,10 @@ export const CalendarModal = () => {
         >
             <h1> Nuevo evento </h1>
             <hr />
-            <form className="container">
+            <form 
+            onSubmit={handleSubmit}
+            className="container"
+            >
 
                 <div className="form-group mb-2">
                     <label>Fecha y hora inicio</label>
