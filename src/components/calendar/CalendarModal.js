@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment'
+import Swal from 'sweetalert2'
 import { useForm } from '../../hooks/useForm';
 
 
@@ -20,50 +21,54 @@ Modal.setAppElement('#root');
 
 
 
-const nowDateStart = moment().minutes(0).seconds(0).add(1,'hours')
-const nowDateEnd = nowDateStart.clone().add(1,'hours')
+const nowDateStart = moment().minutes(0).seconds(0).add(1, 'hours')
+const nowDateEnd = nowDateStart.clone().add(1, 'hours')
 
 export const CalendarModal = () => {
 
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
 
-    const [values, handleInputChanGet,setValues] = useForm({
-        title:'',
-        notes:'',
-        start:nowDateStart.toDate(),
-        end:nowDateEnd.toDate(),
+    const [values, handleInputChanGet, setValues] = useForm({
+        title: '',
+        notes: '',
+        start: nowDateStart.toDate(),
+        end: nowDateEnd.toDate(),
     });
 
-    const {title, notes,start,end} = values;
+    const { title, notes, start, end } = values;
 
     const closeModal = () => {
 
     }
 
-    const handleStartDateChange = (event)=>{
+    const handleStartDateChange = (event) => {
         setDateStart(event);
         setValues({
             ...values,
-            start:event,
+            start: event,
         })
     }
 
-    const handleEndDateChange = (event)=>{
+    const handleEndDateChange = (event) => {
         setDateEnd(event)
         setValues({
             ...values,
-        end:event,
+            end: event,
         })
     }
 
-    const handleSubmit = (event)=>{
+    const handleSubmit = (event) => {
         event.preventDefault();
         const momentStart = moment(start);
         const momentEnd = moment(end);
 
-        if(momentStart.isSameOrAfter(momentEnd)){
-            console.log('no se puede')
+        if (momentStart.isSameOrAfter(momentEnd)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text:'La fecha de finalización debe ser mayor que la fecha de inicio',
+            })
             return;
         }
     }
@@ -81,27 +86,27 @@ export const CalendarModal = () => {
         >
             <h1> Nuevo evento </h1>
             <hr />
-            <form 
-            onSubmit={handleSubmit}
-            className="container"
+            <form
+                onSubmit={handleSubmit}
+                className="container"
             >
 
                 <div className="form-group mb-2">
-                    <label>Fecha y hora inicio</label>
-                    <DateTimePicker 
-                    onChange={handleStartDateChange} 
-                    value={dateStart} 
-                    className={'form-control'}
+                    <label>Fecha y hora de inicio</label>
+                    <DateTimePicker
+                        onChange={handleStartDateChange}
+                        value={dateStart}
+                        className={'form-control'}
                     />
                 </div>
 
                 <div className="form-group mb-2">
-                    <label>Fecha y hora fin</label>
-                    <DateTimePicker 
-                    onChange={handleEndDateChange} 
-                    value={dateEnd} 
-                    minDate={dateStart}
-                    className={'form-control'}
+                    <label>Fecha y hora de finalización</label>
+                    <DateTimePicker
+                        onChange={handleEndDateChange}
+                        value={dateEnd}
+                        minDate={dateStart}
+                        className={'form-control'}
                     />
                 </div>
 
