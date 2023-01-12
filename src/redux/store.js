@@ -4,7 +4,9 @@ import uiReducer from './ui.slice'
 
 
 const store = configureStore({
-    ui:uiReducer,
+    reducer:{
+        ui:uiReducer,
+    }
 })
 
 export default store
