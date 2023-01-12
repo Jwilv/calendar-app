@@ -13,6 +13,12 @@ const uiSlice = createSlice({
                 ...state,
                 modalOpen:true,
             }
+        },
+        closeModal:(state)=>{
+            return{
+                ...state,
+                modalOpen:false,
+            }
         }
     }
 })
