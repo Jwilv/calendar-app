@@ -6,6 +6,7 @@ import moment from 'moment'
 import Swal from 'sweetalert2'
 import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from '../../redux/ui.slice';
 
 
 const customStyles = {
@@ -42,7 +43,7 @@ export const CalendarModal = () => {
 
     const { title, notes, start, end } = values;
 
-    const closeModal = () => {
+    const handleCloseModal = () => {
         dispatch(closeModal())
     }
 
@@ -81,14 +82,14 @@ export const CalendarModal = () => {
             return;
         }
         setTitleValid(true)
-        closeModal();
+        handleCloseModal();
     }
 
     return (
         <Modal
             isOpen={modalOpen}
             // onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
+            onRequestClose={handleCloseModal}
             style={customStyles}
             contentLabel="Example Modal"
             className={'modal'}
