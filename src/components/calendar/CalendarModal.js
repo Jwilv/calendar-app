@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import { useForm } from '../../hooks/useForm';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const customStyles = {
@@ -25,6 +25,8 @@ const nowDateEnd = nowDateStart.clone().add(1, 'hours')
 
 export const CalendarModal = () => {
 
+    const dispatch = useDispatch()
+
     const  {modalOpen} = useSelector( state => state.ui);
 
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
@@ -41,7 +43,7 @@ export const CalendarModal = () => {
     const { title, notes, start, end } = values;
 
     const closeModal = () => {
-
+        dispatch(closeModal())
     }
 
     const handleStartDateChange = (event) => {
