@@ -23,6 +23,6 @@ const uiSlice = createSlice({
     }
 })
 
-export const { openModal } = uiSlice.actions;
+export const { openModal, closeModal } = uiSlice.actions;
 
 export default uiSlice.reducer
