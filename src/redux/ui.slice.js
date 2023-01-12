@@ -8,7 +8,7 @@ const uiSlice = createSlice({
     name:'ui',
     initialState,
     reducers:{
-        openModal(state,action){
+        openModal:(state)=>{
             return{
                 ...state,
                 modalOpen:true,
@@ -16,5 +16,7 @@ const uiSlice = createSlice({
         }
     }
 })
+
+export const { openModal } = uiSlice.actions;
 
 export default uiSlice.reducer
