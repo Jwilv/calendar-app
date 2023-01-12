@@ -21,8 +21,19 @@ const calendarSlice = createSlice({
     name: 'calendar',
     initialState,
     reducers:{
+        eventAddNew:(state, action)=>{
+
+        },
+        eventSetActive: (state, action)=>{
+            return{
+                ...state,
+                active:action.payload
+            }
+        }
 
     }
 })
+
+export const {eventAddNew,eventSetActive} = calendarSlice.actions
 
 export default calendarSlice.reducer;
