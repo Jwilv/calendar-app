@@ -10,6 +10,7 @@ import { CalendarModal } from './CalendarModal'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../../redux/ui.slice'
 import { eventSetActive } from '../../redux/calendar.slice'
+import { AddNewFab } from '../user interface/AddNewFab'
 
 moment.locale('es');
 const localizer = momentLocalizer(moment)
@@ -79,6 +80,7 @@ export const CalendarScreen = () => {
             }}
             />
             <CalendarModal />
+            <AddNewFab />
         </div>
 
     )
