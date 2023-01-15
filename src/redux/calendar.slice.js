@@ -27,7 +27,7 @@ const calendarSlice = createSlice({
         eventSetActive: (state, action)=>{
             return{
                 ...state,
-                active:action.payload
+                active:{...action.payload}
             }
         }
 
