@@ -7,7 +7,7 @@ import { Navbar } from '../user interface/Navbar'
 import { messages } from '../../helpers/calendar-messages-es'
 import { CalendarEvent } from './CalendarEvent'
 import { CalendarModal } from './CalendarModal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openModal } from '../../redux/ui.slice'
 import { eventSetActive } from '../../redux/calendar.slice'
 import { AddNewFab } from '../user interface/AddNewFab'
@@ -15,20 +15,22 @@ import { AddNewFab } from '../user interface/AddNewFab'
 moment.locale('es');
 const localizer = momentLocalizer(moment)
 
-const events = [{
-    title:'funciona?',
-    start : moment().toDate(),
-    end : moment().add(2,'hours').toDate(),
-    bgcolor: '#fafafa',
-    user:{
-        id:'1234',
-        name:'juanceto'
-    }
-}]
+// const events = [{
+//     title:'funciona?',
+//     start : moment().toDate(),
+//     end : moment().add(2,'hours').toDate(),
+//     bgcolor: '#fafafa',
+//     user:{
+//         id:'1234',
+//         name:'juanceto'
+//     }
+// }]
 
 export const CalendarScreen = () => {
 
     const dispatch = useDispatch();
+
+    const {events} = useSelector(state => state.calendar)
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
 
