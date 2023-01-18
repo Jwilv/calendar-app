@@ -29,7 +29,7 @@ export const CalendarModal = () => {
 
     const dispatch = useDispatch()
 
-    const  {modalOpen} = useSelector( state => state.ui);
+    const { modalOpen } = useSelector(state => state.ui);
 
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
@@ -40,6 +40,10 @@ export const CalendarModal = () => {
         notes: '',
         start: nowDateStart.toDate(),
         end: nowDateEnd.toDate(),
+        user: {
+            id: '1234',
+            name: 'juanceto'
+        }
     });
 
     const { title, notes, start, end } = values;
@@ -84,7 +88,7 @@ export const CalendarModal = () => {
         }
         dispatch(eventAddNew({
             ...values,
-            id:new Date().getTime()
+            id: new Date().getTime()
         }))
         setTitleValid(true)
         handleCloseModal();
