@@ -25,6 +25,17 @@ Modal.setAppElement('#root');
 const nowDateStart = moment().minutes(0).seconds(0).add(1, 'hours')
 const nowDateEnd = nowDateStart.clone().add(1, 'hours')
 
+const initialEvent = {
+    title: '',
+    notes: '',
+    start: nowDateStart.toDate(),
+    end: nowDateEnd.toDate(),
+    user: {
+        id: '1234',
+        name: 'juanceto'
+    }
+}
+
 export const CalendarModal = () => {
 
     const dispatch = useDispatch()
@@ -35,16 +46,7 @@ export const CalendarModal = () => {
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
     const [titleValid, setTitleValid] = useState(true)
 
-    const [values, handleInputChanGet, setValues] = useForm({
-        title: '',
-        notes: '',
-        start: nowDateStart.toDate(),
-        end: nowDateEnd.toDate(),
-        user: {
-            id: '1234',
-            name: 'juanceto'
-        }
-    });
+    const [values, handleInputChanGet, setValues] = useForm(initialEvent);
 
     const { title, notes, start, end } = values;
 
