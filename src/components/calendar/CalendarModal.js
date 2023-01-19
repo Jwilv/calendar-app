@@ -52,6 +52,7 @@ export const CalendarModal = () => {
 
     const handleCloseModal = () => {
         dispatch(closeModal())
+        setValues(initialEvent)
     }
 
     const handleStartDateChange = (event) => {
