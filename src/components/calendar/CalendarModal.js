@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
@@ -41,6 +41,7 @@ export const CalendarModal = () => {
     const dispatch = useDispatch()
 
     const { modalOpen } = useSelector(state => state.ui);
+    const { active } = useSelector(state => state.calendar);
 
     const [dateStart, setDateStart] = useState(nowDateStart.toDate())
     const [dateEnd, setDateEnd] = useState(nowDateEnd.toDate())
@@ -49,6 +50,12 @@ export const CalendarModal = () => {
     const [values, handleInputChanGet, setValues] = useForm(initialEvent);
 
     const { title, notes, start, end } = values;
+
+    useEffect(() => {
+
+        if (active) { setValues(active) }
+
+    }, [setValues,active])
 
     const handleCloseModal = () => {
         dispatch(closeModal())
