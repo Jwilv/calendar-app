@@ -122,7 +122,7 @@ export const CalendarModal = () => {
             closeTimeoutMS={200}
             overlayClassName={'modal-fondo'}
         >
-            <h1> Nuevo evento </h1>
+            <h1> {(active) ?'Editar evento' : 'Nuevo evento'} </h1>
             <hr />
             <form
                 onSubmit={handleSubmit}
