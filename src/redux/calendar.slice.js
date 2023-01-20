@@ -39,11 +39,17 @@ const calendarSlice = createSlice({
                 ...state,
                 active:null,
             }
+        },
+        eventUpdated:(state, action)=>{
+            return{
+                ...state,
+                events: state.events.map( event => (event.id === action.payload.id) ? action.payload : event) 
+            }
         }
 
     }
 })
 
-export const { eventAddNew, eventSetActive, eventClearActive } = calendarSlice.actions
+export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated} = calendarSlice.actions
 
 export default calendarSlice.reducer;
