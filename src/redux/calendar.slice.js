@@ -4,7 +4,7 @@ import moment from "moment";
 const initialState = {
     events: [
         {
-            id:new Date().getTime(),
+            id: new Date().getTime(),
             title: 'funciona?',
             start: moment().toDate(),
             end: moment().add(2, 'hours').toDate(),
@@ -25,7 +25,7 @@ const calendarSlice = createSlice({
         eventAddNew: (state, action) => {
             return {
                 ...state,
-                events:[...state.events,action.payload]
+                events: [...state.events, action.payload]
             }
         },
         eventSetActive: (state, action) => {
@@ -34,29 +34,29 @@ const calendarSlice = createSlice({
                 active: { ...action.payload }
             }
         },
-        eventClearActive:(state)=>{
-            return{
+        eventClearActive: (state) => {
+            return {
                 ...state,
-                active:null,
+                active: null,
             }
         },
-        eventUpdated:(state, action)=>{
-            return{
+        eventUpdated: (state, action) => {
+            return {
                 ...state,
-                events: state.events.map( event => (event.id === action.payload.id) ? action.payload : event) 
+                events: state.events.map(event => (event.id === action.payload.id) ? action.payload : event)
             }
         },
-        eventDeleted:(state)=>{
-            return{
+        eventDeleted: (state) => {
+            return {
                 ...state,
-                events: state.events.filter( event => (event.id !== state.active.id) ),
-                active:null,
+                events: state.events.filter(event => (event.id !== state.active.id)),
+                active: null,
             }
         }
 
     }
 })
 
-export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted} = calendarSlice.actions
+export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted } = calendarSlice.actions
 
 export default calendarSlice.reducer;
