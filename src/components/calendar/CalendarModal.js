@@ -53,7 +53,11 @@ export const CalendarModal = () => {
 
     useEffect(() => {
 
-        if (active) { setValues(active) }
+        if (active) { 
+            setValues(active) 
+        }else{
+            setValues(initialEvent)
+        }
 
     }, [setValues, active])
 
