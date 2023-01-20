@@ -32,6 +32,12 @@ const calendarSlice = createSlice({
                 ...state,
                 active: { ...action.payload }
             }
+        },
+        eventClearActive:(state)=>{
+            return{
+                ...state,
+                active:null,
+            }
         }
 
     }
