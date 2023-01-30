@@ -11,12 +11,17 @@ export const LoginScreen = () => {
 
     const {loginEmail,loginPassword} = formLoginvalues
 
+    const handleLogin = (event)=> {
+    event.preventDefault();
+    console.log(formLoginvalues);
+    }
+
     return (
         <div className="container login-container">
             <div className="row">
                 <div className="col-md-6 login-form-1">
                     <h3>Ingreso</h3>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className="form-group mb-2">
                             <input 
                                 type="text"
@@ -32,6 +37,7 @@ export const LoginScreen = () => {
                                 type="password"
                                 className="form-control"
                                 placeholder="Contraseña"
+                                autoComplete='off'
                                 name='loginPassword'
                                 value={loginPassword}
                                 onChange={handleLoginInputChanGet}
@@ -68,6 +74,7 @@ export const LoginScreen = () => {
                             <input
                                 type="password"
                                 className="form-control"
+                                autoComplete='off'
                                 placeholder="Contraseña" 
                             />
                         </div>
@@ -76,6 +83,7 @@ export const LoginScreen = () => {
                             <input
                                 type="password"
                                 className="form-control"
+                                autoComplete='off'
                                 placeholder="Repita la contraseña" 
                             />
                         </div>
