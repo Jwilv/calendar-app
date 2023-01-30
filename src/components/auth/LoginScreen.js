@@ -1,7 +1,16 @@
 import React from 'react';
+import { useForm } from '../../hooks/useForm';
 import './login.css';
 
 export const LoginScreen = () => {
+
+    const [formLoginvalues, handleLoginInputChanGet] = useForm({
+    loginEmail:'juanpreciado@gmail.com',
+    loginPassword:'12341234'
+    })
+
+    const {loginEmail,loginPassword} = formLoginvalues
+
     return (
         <div className="container login-container">
             <div className="row">
@@ -13,6 +22,9 @@ export const LoginScreen = () => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
+                                name='loginEmail'
+                                value={loginEmail}
+                                onChange={handleLoginInputChanGet}
                             />
                         </div>
                         <div className="form-group mb-2">
@@ -20,6 +32,9 @@ export const LoginScreen = () => {
                                 type="password"
                                 className="form-control"
                                 placeholder="Contraseña"
+                                name='loginPassword'
+                                value={loginPassword}
+                                onChange={handleLoginInputChanGet}
                             />
                         </div>
                         <div className="form-group mb-2">
