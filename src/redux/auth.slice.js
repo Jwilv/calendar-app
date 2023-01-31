@@ -11,9 +11,18 @@ const authSlice = createSlice({
     name:'auth',
     initialState,
     reducers:{
+        login:(state, action)=>{
+                return({
+                    ...state,
+                    checking:false,
+                    ...action.payload,
+                })
+        },
 
     }
 })
+
+const {login} = authSlice.actions;
 
 export const startLogin =  (email,password)=>{
     return async(dispatch)=>{
