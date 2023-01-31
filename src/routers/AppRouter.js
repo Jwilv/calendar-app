@@ -11,7 +11,7 @@ import { PublicRouter } from './PublicRouter'
 export const AppRouter = () => {
     const dispatch = useDispatch();
 
-    const { checking } = useSelector(state => state.auth);
+    const { checking, uid} = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(startChecking())
@@ -24,12 +24,12 @@ export const AppRouter = () => {
     return (
         <Routes>
             <Route path='/login' element={
-                <PublicRouter>
+                <PublicRouter logged={!!uid}>
                     <LoginScreen />
                 </PublicRouter>
             } />
             <Route path='/' element={
-                <PrivateRouter>
+                <PrivateRouter logged={!!uid}>
                     <CalendarScreen />
                 </PrivateRouter>
             } />
