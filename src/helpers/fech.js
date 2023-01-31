@@ -22,7 +22,7 @@ export const fechWithoToken = (endpoint,data, method = 'GET')=>{
 export const fechToken = (endpoint,data, method = 'GET')=>{
 
     const url = `${baseUrl}/${endpoint}`
-    const token = localStorage.getItem('token') || null
+    const token = localStorage.getItem('token') || ''
 
     if(method === 'GET'){
         return fetch(url,{
