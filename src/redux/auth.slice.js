@@ -19,11 +19,17 @@ const authSlice = createSlice({
                     ...action.payload,
                 })
         },
+        checkingFinish:(state)=>{
+            return{
+                ...state,
+                checking:false,
+            }
+        }
 
     }
 })
 
-const {login} = authSlice.actions;
+const {login, checkingFinish} = authSlice.actions;
 
 export const startLogin =  (email,password)=>{
     return async(dispatch)=>{
