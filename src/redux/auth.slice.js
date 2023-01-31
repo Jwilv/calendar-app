@@ -16,10 +16,19 @@ const authSlice = createSlice({
 })
 
 export const startLogin =  (email,password)=>{
-    return async()=>{
+    return async(dispatch)=>{
         const res = await fechWithoToken('auth',{email,password}, 'POST');
         const body = await res.json();
-        console.log(body)
+        
+        if(body.ok){
+            localStorage.setItem('token',body.token)
+            localStorage.setItem('token-init-date', new Date().getTime());
+
+            dispatch(login({
+                uid:body.uid,
+                name:body.name,
+            }))
+        }
     }
 }
 
