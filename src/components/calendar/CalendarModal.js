@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/ui.slice';
-import { eventAddNew, eventClearActive, eventUpdated } from '../../redux/calendar.slice';
+import { eventAddNew, eventClearActive, eventUpdated, startEventAddNew } from '../../redux/calendar.slice';
 
 
 const customStyles = {
@@ -102,10 +102,7 @@ export const CalendarModal = () => {
         if (active) {
             dispatch(eventUpdated(values))
         } else {
-            dispatch(eventAddNew({
-                ...values,
-                id: new Date().getTime()
-            }))
+            dispatch(startEventAddNew(values))
         }
         setTitleValid(true)
         handleCloseModal();
