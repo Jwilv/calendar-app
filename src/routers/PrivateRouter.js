@@ -7,10 +7,10 @@ import { useSelector } from 'react-redux'
 export const PrivateRouter = ({ children }) => {
 
     const {uid} = useSelector(state => state.auth);
-
+    
     return (uid)
         ? children
-        : <Navigate to={'/login'} />
+        : <Navigate to={'/'} />
 }
 
 PrivateRouter.propTypes = {

@@ -5,6 +5,7 @@ import { LoginScreen } from '../components/auth/LoginScreen'
 import { CalendarScreen } from '../components/calendar/CalendarScreen'
 import { SpinnerScreen } from '../components/spiner/SpinnerScreen'
 import { startChecking } from '../redux/auth.slice'
+import { PrivateRouter } from './PrivateRouter'
 
 export const AppRouter = () => {
     const dispatch = useDispatch();
@@ -15,14 +16,17 @@ export const AppRouter = () => {
         dispatch(startChecking())
     }, [dispatch])
 
-    if(checking){
-        return ( <SpinnerScreen />)
+    if (checking) {
+        return (<SpinnerScreen />)
     }
-    
+
     return (
         <Routes>
             <Route path='/login' element={<LoginScreen />} />
-            <Route path='/' element={<CalendarScreen />}/>
+            <Route path='/' element={
+                <PrivateRouter>
+                    <CalendarScreen />
+                </PrivateRouter>} />
         </Routes>
     )
 }
