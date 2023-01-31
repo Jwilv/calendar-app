@@ -1,3 +1,13 @@
+
+
+.container-Spinner{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .wheel-and-hamster {
     --dur: 1s;
     position: relative;
