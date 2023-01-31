@@ -1,10 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 export const Navbar = () => {
+    const {name} = useSelector(state => state.auth)
     return (
         <div className='navbar navbar-dark bg-dark mb-4'>
             <span className='navbar-brand ms-3'>
-                juancito
+                {name}
             </span>
             <button className='btn btn-outline-danger me-3'>
                 <i className='fas fa-sign-out-alt'></i>
