@@ -15,10 +15,27 @@ export const LoginScreen = () => {
 
     const {loginEmail,loginPassword} = formLoginvalues
 
+        const [formRegistervalues, handleRegisterInputChanGet] = useForm({
+        registerEmail:'jjjjjjjjjjjjjjj@gmail.com',
+        registerPassword:'12341234',
+        registerPasswordConfirm:'12341234',
+        registerName:'pedro',
+        })
+
+    const {registerEmail,
+        registerPassword,
+        registerPasswordConfirm,
+        registerName } = formRegistervalues
+
     const handleLogin = (event)=> {
     event.preventDefault();
     //console.log(formLoginvalues);
     dispatch(startLogin(loginEmail,loginPassword))
+    }
+
+    const handleRegister = (event)=>{
+    event.preventDefault();
+    console.log(formRegistervalues);
     }
 
     return (
@@ -60,12 +77,16 @@ export const LoginScreen = () => {
 
                 <div className="col-md-6 login-form-2">
                     <h3>Registro</h3>
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <div className="form-group mb-2">
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Nombre"
+                                autoComplete='off'
+                                name='registerName'
+                                value={registerName}
+                                onChange={handleRegisterInputChanGet}
                             />
                         </div>
                         <div className="form-group mb-2">
@@ -73,6 +94,10 @@ export const LoginScreen = () => {
                                 type="email"
                                 className="form-control"
                                 placeholder="Correo"
+                                autoComplete='off'
+                                name='registerEmail'
+                                value={registerEmail}
+                                onChange={handleRegisterInputChanGet}
                             />
                         </div>
                         <div className="form-group mb-2">
@@ -81,6 +106,9 @@ export const LoginScreen = () => {
                                 className="form-control"
                                 autoComplete='off'
                                 placeholder="Contraseña" 
+                                name='registerPassword'
+                                value={registerPassword}
+                                onChange={handleRegisterInputChanGet}
                             />
                         </div>
 
@@ -90,6 +118,9 @@ export const LoginScreen = () => {
                                 className="form-control"
                                 autoComplete='off'
                                 placeholder="Repita la contraseña" 
+                                name='registerPasswordConfirm'
+                                value={registerPasswordConfirm}
+                                onChange={handleRegisterInputChanGet}
                             />
                         </div>
 
