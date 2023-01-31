@@ -8,14 +8,14 @@ export const LoginScreen = () => {
 
     const dispatch = useDispatch();
 
-    const [formLoginvalues, handleLoginInputChanGet] = useForm({
+    const [formLoginValues, handleLoginInputChanGet] = useForm({
     loginEmail:'juanpreciado@gmail.com',
     loginPassword:'12341234'
     })
 
-    const {loginEmail,loginPassword} = formLoginvalues
+    const {loginEmail,loginPassword} = formLoginValues
 
-        const [formRegistervalues, handleRegisterInputChanGet] = useForm({
+        const [formRegisterValues, handleRegisterInputChanGet] = useForm({
         registerEmail:'jjjjjjjjjjjjjjj@gmail.com',
         registerPassword:'12341234',
         registerPasswordConfirm:'12341234',
@@ -25,17 +25,17 @@ export const LoginScreen = () => {
     const {registerEmail,
         registerPassword,
         registerPasswordConfirm,
-        registerName } = formRegistervalues
+        registerName } = formRegisterValues
 
     const handleLogin = (event)=> {
     event.preventDefault();
-    //console.log(formLoginvalues);
+    //console.log(formLoginValues);
     dispatch(startLogin(loginEmail,loginPassword))
     }
 
     const handleRegister = (event)=>{
     event.preventDefault();
-    console.log(formRegistervalues);
+    console.log(formRegisterValues);
     }
 
     return (
