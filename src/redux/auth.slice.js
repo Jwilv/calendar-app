@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fechWithoToken } from "../helpers/fech";
 
 const initialState = {
     checking: true,
@@ -16,7 +17,9 @@ const authSlice = createSlice({
 
 export const startLogin =  (email,password)=>{
     return async()=>{
-        console.log(email,password)
+        const res = await fechWithoToken('auth',{email,password}, 'POST');
+        const body = await res.json();
+        console.log(body)
     }
 }
 
