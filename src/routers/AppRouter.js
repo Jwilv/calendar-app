@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router'
 import { LoginScreen } from '../components/auth/LoginScreen'
 import { CalendarScreen } from '../components/calendar/CalendarScreen'
+import { SpinnerScreen } from '../components/spiner/SpinnerScreen'
 import { startChecking } from '../redux/auth.slice'
 
 export const AppRouter = () => {
