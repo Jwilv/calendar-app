@@ -89,4 +89,11 @@ export const startChecking =  ()=>{
     }
 }
 
+export const startLogout = ()=>{
+    return(dispatch)=>{
+        localStorage.clear()
+        dispatch(logout());
+    }
+}
+
 export default  authSlice.reducer;
