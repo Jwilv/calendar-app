@@ -48,6 +48,7 @@ export const startRegister =  (email,password,name)=>{
     return async(dispatch)=>{
         const res = await fechWithoToken('auth/new',{email,password,name}, 'POST');
         const body = await res.json();
+        console.log(body)
         
         if(body.ok){
             localStorage.setItem('token',body.token)
