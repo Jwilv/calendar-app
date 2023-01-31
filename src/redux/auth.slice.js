@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import { fechWithoToken } from "../helpers/fech";
 
 const initialState = {
@@ -37,6 +38,8 @@ export const startLogin =  (email,password)=>{
                 uid:body.uid,
                 name:body.name,
             }))
+        }else{
+            Swal.fire('Error',body.msg,'error')
         }
     }
 }
