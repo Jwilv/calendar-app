@@ -2,20 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { fechToken } from "../helpers/fech";
 
+// {
+//     id: new Date().getTime(),
+//     title: 'funciona?',
+//     start: moment().toDate(),
+//     end: moment().add(2, 'hours').toDate(),
+//     bgcolor: '#fafafa',
+//     user: {
+//         id: '1234',
+//         name: 'juanceto'
+//     }
+// },
+
 const initialState = {
-    events: [
-        {
-            id: new Date().getTime(),
-            title: 'funciona?',
-            start: moment().toDate(),
-            end: moment().add(2, 'hours').toDate(),
-            bgcolor: '#fafafa',
-            user: {
-                id: '1234',
-                name: 'juanceto'
-            }
-        },
-    ],
+    events: [],
     active: null
 }
 
@@ -53,12 +53,18 @@ const calendarSlice = createSlice({
                 events: state.events.filter(event => (event.id !== state.active.id)),
                 active: null,
             }
+        },
+        eventLoaded:(state, action)=>{
+            return{
+                ...state,
+                events:[...action.payload]
+            }
         }
 
     }
 })
 
-export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted } = calendarSlice.actions
+export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted, eventLoaded } = calendarSlice.actions
 
 export const startEventAddNew = (event)=>{
     return async(dispatch, getState)=>{
