@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import moment from "moment";
+import Swal from "sweetalert2";
 import { fechToken } from "../helpers/fech";
 import { prepareEvenst } from "../helpers/prepare-events";
 
@@ -104,6 +104,22 @@ export const startEventLoading = ()=>{
             console.log(error);
         }
 
+    }
+}
+
+export const startEventUpdate = (event)=>{
+    return async(dispatch)=>{
+        try {
+            const res = await fechToken(`events/${event.id}`, event ,'PUT')
+            const body = await res.json();
+            if(body.ok){
+                dispatch(eventUpdated(event))
+            }else{
+                Swal.fire('Error',body.msg,'error')
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
