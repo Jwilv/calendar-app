@@ -53,6 +53,7 @@ export const LoginScreen = () => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
+                                autoComplete='off'
                                 name='loginEmail'
                                 value={loginEmail}
                                 onChange={handleLoginInputChanGet}
