@@ -112,7 +112,7 @@ export const startEventUpdate = (event)=>{
     }
 }
 
-export const startEventDelete = (event)=>{
+export const startEventDelete = ()=>{
     return async(dispatch, getState)=>{
         const {id} = getState().calendar.active
         try {
