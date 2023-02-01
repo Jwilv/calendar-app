@@ -31,12 +31,10 @@ export const CalendarScreen = () => {
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
 
     const handleDoubleClick = (event)=>{
-        console.log(event);
         dispatch(openModal())
     }
 
     const handleSelectEvent = (event)=>{
-        console.log(event);
         dispatch(eventSetActive(event))
     }
 
