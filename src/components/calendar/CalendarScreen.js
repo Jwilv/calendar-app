@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'moment/locale/es'
@@ -9,7 +9,7 @@ import { CalendarEvent } from './CalendarEvent'
 import { CalendarModal } from './CalendarModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModal } from '../../redux/ui.slice'
-import { eventClearActive, eventSetActive } from '../../redux/calendar.slice'
+import { eventClearActive, eventSetActive, startEventLoading } from '../../redux/calendar.slice'
 import { AddNewFab } from '../user interface/AddNewFab'
 import { DeleteEventFab } from '../user interface/DeleteEventFab'
 
@@ -19,6 +19,10 @@ const localizer = momentLocalizer(moment)
 export const CalendarScreen = () => {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(startEventLoading())
+    }, [dispatch])
 
     const {events, active} = useSelector(state => state.calendar)
 
