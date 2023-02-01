@@ -3,17 +3,6 @@ import Swal from "sweetalert2";
 import { fechToken } from "../helpers/fech";
 import { prepareEvenst } from "../helpers/prepare-events";
 
-// {
-//     id: new Date().getTime(),
-//     title: 'funciona?',
-//     start: moment().toDate(),
-//     end: moment().add(2, 'hours').toDate(),
-//     bgcolor: '#fafafa',
-//     user: {
-//         id: '1234',
-//         name: 'juanceto'
-//     }
-// },
 
 const initialState = {
     events: [],
