@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 import { fechToken } from "../helpers/fech";
+import { prepareEvenst } from "../helpers/prepare-events";
 
 // {
 //     id: new Date().getTime(),
@@ -96,9 +97,8 @@ export const startEventLoading = ()=>{
             const res = await fechToken('events');
             const body = await res.json();
             
-            const events = body.events;
-
-            dispatch(eventLoaded([]))
+            const events = prepareEvenst( body.events ) ;
+            dispatch(eventLoaded(events))
 
         } catch (error) {
             console.log(error);
