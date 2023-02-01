@@ -88,4 +88,10 @@ export const startEventAddNew = (event)=>{
     }
 }
 
+export const startEventLoading = ()=>{
+    return async(dispatch)=>{
+
+    }
+}
+
 export default calendarSlice.reducer;
