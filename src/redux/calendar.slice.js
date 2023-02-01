@@ -112,4 +112,21 @@ export const startEventUpdate = (event)=>{
     }
 }
 
+export const startEventDelete = (event)=>{
+    return async(dispatch, getState)=>{
+        const {id} = getState().calendar.active
+        try {
+            const res = await fechToken(`events/${id}`, {} ,'DELETE')
+            const body = await res.json();
+            if(body.ok){
+                dispatch(eventDeleted())
+            }else{
+                Swal.fire('Error',body.msg,'error')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export default calendarSlice.reducer;
