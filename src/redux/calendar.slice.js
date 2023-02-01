@@ -91,6 +91,19 @@ export const startEventAddNew = (event)=>{
 export const startEventLoading = ()=>{
     return async(dispatch)=>{
 
+        try {
+
+            const res = await fechToken('events');
+            const body = await res.json();
+            
+            const events = body.events;
+
+            dispatch(eventLoaded([]))
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }
 
