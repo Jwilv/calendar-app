@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
+import { fechToken } from "../helpers/fech";
 
 const initialState = {
     events: [
@@ -60,8 +61,24 @@ const calendarSlice = createSlice({
 export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted } = calendarSlice.actions
 
 export const startEventAddNew = (event)=>{
-    return (dispatch)=>{
-console.log(event);
+    return async(dispatch, getState)=>{
+
+        const { uid, name } = getState().auth;
+
+        try {
+            const res = await fechToken('events', event, 'POST')
+            const body = await res.json();
+            if(body.ok){
+                event.id = body.event.id
+                event.user = {
+                    _id: uid ,
+                    name: name,
+                }
+            }
+            dispatch(eventAddNew(event));
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
