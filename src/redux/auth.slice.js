@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import { fechToken, fechWithoToken } from "../helpers/fech";
+import { eventClearActive, eventClearEvents } from "./calendar.slice";
 
 const initialState = {
     checking: true,
@@ -98,6 +99,8 @@ export const startLogout = ()=>{
     return(dispatch)=>{
         localStorage.clear()
         dispatch(logout());
+        dispatch(eventClearActive())
+        dispatch(eventClearEvents())
     }
 }
 

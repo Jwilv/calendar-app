@@ -31,6 +31,12 @@ const calendarSlice = createSlice({
                 active: null,
             }
         },
+        eventClearEvents:(state)=>{
+            return{
+                ...state,
+                events: [],
+            }
+        },
         eventUpdated: (state, action) => {
             return {
                 ...state,
@@ -54,7 +60,13 @@ const calendarSlice = createSlice({
     }
 })
 
-export const { eventAddNew, eventSetActive, eventClearActive, eventUpdated, eventDeleted, eventLoaded } = calendarSlice.actions
+export const { eventAddNew,
+    eventSetActive,
+    eventClearActive, 
+    eventUpdated, 
+    eventDeleted, 
+    eventLoaded, 
+    eventClearEvents } = calendarSlice.actions
 
 export const startEventAddNew = (event)=>{
     return async(dispatch, getState)=>{
