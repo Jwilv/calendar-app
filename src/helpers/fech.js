@@ -1,5 +1,7 @@
 
-const baseUrl = process.env.REACT_APP_API_URL
+// const baseUrl = process.env.REACT_APP_API_URL
+ const baseUrl = 'http://localhost:4000/api'
+
 
 export const fechWithoToken = (endpoint,data, method = 'GET')=>{
 
