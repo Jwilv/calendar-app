@@ -75,8 +75,14 @@ self.addEventListener('message', (event) => {
 
 
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', async(event) => {
 
-  console.log('instalacion')
+  const cache = await caches.open('cache-v1');
+
+  await cache.addAll([
+    'stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css',
+    '/favicon.ico',
+  ])
   
 });
