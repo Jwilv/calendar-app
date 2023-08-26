@@ -75,7 +75,7 @@ self.addEventListener('message', (event) => {
 
 
 
-self.addEventListener('install', async(event) => {
+self.addEventListener('install', async (event) => {
 
   const cache = await caches.open('cache-v1');
 
@@ -84,9 +84,42 @@ self.addEventListener('install', async(event) => {
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css',
     '/favicon.ico',
   ])
-  
+
 });
 
-self.addEventListener( 'fetch', async( event)=>{
+const apiOfflineFallbacks = [
+  'http://localhost:4000/api/auth/renew',
+  'http://localhost:4000/api/events',
+]
+
+self.addEventListener('fetch', async (event) => {
+
+  if ( !apiOfflineFallbacks.includes(event.request.url)) return;
+
   console.log(event.request.url)
+
+  const resp = fetch(event.request)
+    .then(response => {
+
+      if (!response) {
+        return caches.match(event.request);
+      }
+
+      caches.open('cache-dynamic')
+        .then(cache => {
+          cache.put(event.request, response)
+        })
+
+      return response.clone();
+
+    })
+    .catch(error => {
+
+      console.log('manejando el fecht en offline')
+      return caches.match(event.request);
+
+    })
+
+  event.respondWith(resp);
+
 })
