@@ -27,14 +27,38 @@ registerRoute(
   new NetworkFirst(),
 );
 
-const bgSyncPlugin = new BackgroundSyncPlugin('posts-offline', {
+const bgSyncPluginPost = new BackgroundSyncPlugin('posts-offline', {
   maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
 
 registerRoute(
   new RegExp('http://localhost:4000/api/events'),
   new NetworkOnly({
-    plugins: [bgSyncPlugin],
+    plugins: [bgSyncPluginPost],
   }),
   'POST'
+);
+
+const bgSyncPluginPut = new BackgroundSyncPlugin('puts-offline', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
+});
+
+registerRoute(
+  new RegExp('http://localhost:4000/api/events'),
+  new NetworkOnly({
+    plugins: [bgSyncPluginPut],
+  }),
+  'PUT'
+);
+
+const bgSyncPluginDelete = new BackgroundSyncPlugin('deletes-offline', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
+});
+
+registerRoute(
+  new RegExp('http://localhost:4000/api/events'),
+  new NetworkOnly({
+    plugins: [bgSyncPluginDelete],
+  }),
+  'DELETE'
 );
