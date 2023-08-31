@@ -7,13 +7,15 @@ const { registerRoute } = workbox.routing
 const { CacheFirst, NetworkFirst, NetworkOnly } = workbox.strategies
 const { BackgroundSyncPlugin } = workbox.backgroundSync;
 
-registerRoute(
-  new RegExp('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css'),
-  new CacheFirst(),
-); 
+const cacheFirstCache = [
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css',
+]
 
 registerRoute(
-  new RegExp('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'),
+  ({ request, url }) => {
+    return cacheFirstCache.includes(url.pathname)
+  },
   new CacheFirst(),
 );
 
@@ -23,7 +25,7 @@ const cacheNetworkFirst = [
 ]
 
 registerRoute(
-  ({request, url})=>{
+  ({ request, url }) => {
     return cacheNetworkFirst.includes(url.pathname)
   },
   new NetworkFirst(),
