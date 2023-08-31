@@ -14,7 +14,7 @@ const cacheFirstCache = [
 
 registerRoute(
   ({ request, url }) => {
-    return cacheFirstCache.includes(url.pathname)
+    return cacheFirstCache.includes(url.href)
   },
   new CacheFirst(),
 );
