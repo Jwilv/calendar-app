@@ -10,12 +10,24 @@ const { BackgroundSyncPlugin } = workbox.backgroundSync;
 registerRoute(
   new RegExp('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css'),
   new CacheFirst(),
-);
+); 
 
 registerRoute(
   new RegExp('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'),
   new CacheFirst(),
 );
+
+const cacheNetworkFirst = [
+  '/api/auth/renew',
+  '/api/events'
+]
+
+registerRoute(
+  ({request, url})=>{
+    return cacheNetworkFirst.includes(url.pathname)
+  },
+  new NetworkFirst(),
+)
 
 registerRoute(
   new RegExp('http://localhost:4000/api/auth/renew'),
@@ -44,9 +56,9 @@ const bgSyncPluginPut = new BackgroundSyncPlugin('puts-offline', {
 });
 
 registerRoute(
-  new RegExp('http://localhost:4000/api/events'),
+  new RegExp('http://localhost:4000/api/events/'),
   new NetworkOnly({
-    plugins: [bgSyncPluginPut],
+    plugins: [bgSyncPluginPost],
   }),
   'PUT'
 );
@@ -56,9 +68,9 @@ const bgSyncPluginDelete = new BackgroundSyncPlugin('deletes-offline', {
 });
 
 registerRoute(
-  new RegExp('http://localhost:4000/api/events'),
+  new RegExp('http://localhost:4000/api/events/'),
   new NetworkOnly({
-    plugins: [bgSyncPluginDelete],
+    plugins: [bgSyncPluginPost],
   }),
   'DELETE'
 );
